@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <div class="container-fluid">
+        <form>
+            <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" (input)="handleInput($event)"> -->
+            <mat-form-field class="example-full-width">
+                <mat-label>Search by title</mat-label>
+                <input matInput placeholder="Type something" (input)="handleInput($event)">
+            </mat-form-field>
+        </form>
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngFor="let item of postList; let i = index">
+                <mat-card class="example-card">
+                    <img [src]="item.image" mat-card-image>
+                    <mat-card-content>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>{{item.title}}</mat-card-title>
+                        <mat-card-subtitle>By {{item.author}}</mat-card-subtitle>
+                        <mat-card-subtitle>{{item.date | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+                        <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
+                        <p class="text">{{item.text}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button (click)="open(i)">Read more</button>
+                        <mat-slide-toggle (click)="handleClick(i)" class="delete">Delete</mat-slide-toggle>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

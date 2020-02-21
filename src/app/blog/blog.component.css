@@ -1,0 +1,33 @@
+.wrapper{
+    padding: 2em;
+}
+
+ a{
+     color: white;
+ }
+
+ a:hover{
+    color: white;
+}
+img{
+    padding: 1em;
+}
+
+.text{
+    max-height: 40px;
+    overflow: hidden;
+}
+
+.delete{
+    color: tomato;
+}
+
+/* .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  } */

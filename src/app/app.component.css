@@ -1,0 +1,11 @@
+.navShadow{
+    box-shadow: 0 0 10px ;
+}
+
+.wrapper{
+    min-width: 360px;
+}
+
+.nav{
+    float: right;
+}
