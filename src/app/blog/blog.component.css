@@ -10,7 +10,7 @@
     color: white;
 }
 img{
-    padding: 1em;
+    padding: 2em;
 }
 
 .text{
@@ -19,15 +19,9 @@ img{
 }
 
 .delete{
+    position: relative;
     color: tomato;
+    float: right;
+    bottom: -7px;
+    margin-right: 7px;
 }
-
-/* .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  } */

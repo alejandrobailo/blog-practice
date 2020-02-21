@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AdminService } from './admin.service';
 
 @Component({
@@ -9,7 +8,11 @@ import { AdminService } from './admin.service';
 })
 export class AppComponent {
 
-  constructor(private routerActive: Router, private adminService: AdminService) {
+  constructor(private adminService: AdminService) { }
 
+  ngOnInit() { }
+
+  handleClick(event) {
+    return this.adminService.getFilterCategory(event.target.textContent);
   }
 }

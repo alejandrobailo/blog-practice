@@ -1,27 +1,42 @@
-<div class="container-fluid wrapper">
+<div class="wrapper">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>New post</h1>
+            <h2>New post</h2>
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="form-group has-error">
+                <div class="form-group">
                     <label for="slug">Author</label>
                     <input type="text" class="form-control" name="author" formControlName="author" />
+                    <p *ngIf="(form.controls.author.errors?.required && form.controls.author.touched) || (form.controls.author.errors && form.controls.author.touched)" class="error">
+                        Type a valid name between 3 and 15 characters
+                    </p>
                 </div>
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" name="title" formControlName="title" />
+                    <p *ngIf="(form.controls.title.errors?.required && form.controls.title.touched) || (form.controls.title.errors && form.controls.title.touched)" class="error">
+                        Type a valid title between 3 and 35 characters
+                    </p>
                 </div>
                 <div class="form-group">
                     <label for="description">Image</label>
                     <input rows="5" class="form-control" name="image" formControlName="image" />
+                    <p *ngIf="(form.controls.image.errors?.required && form.controls.image.touched) || (form.controls.image.errors && form.controls.image.touched)" class="error">
+                        Type a valid url
+                    </p>
                 </div>
                 <div class="form-group">
-                    <label for="title">Category</label>
-                    <input type="text" class="form-control" name="category" formControlName="category" />
+                    <mat-form-field>
+                        <mat-label>Category</mat-label>
+                        <mat-select name="category" formControlName="category">
+                            <mat-option *ngFor="let category of categories" [value]="category.value">
+                                {{category.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
                     <label for="description">Content</label>
-                    <textarea rows="5" class="form-control" name="text" formControlName="text"></textarea>
+                    <textarea rows="5" class="form-control editor" id="sampleeditor" name="text" formControlName="text"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" [disabled]=!form.valid>Create</button>

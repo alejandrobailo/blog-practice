@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../admin.service';
-import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Post } from '../models/post';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
+interface Categories {
+  value: string;
+  viewValue: string;
 }
 
 @Component({
@@ -19,16 +16,23 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class FormularioComponent implements OnInit {
 
-  newPost: Post;
-
   form: FormGroup;
+  newPost: Post;
+  //
+  selectedValue: string;
 
-  constructor(private adminService: AdminService) {
+  categories: Categories[] = [
+    { value: 'Travel', viewValue: 'Travel' },
+    { value: 'Food', viewValue: 'Food' }
+  ];
+
+  constructor(private adminService: AdminService, private routerActive: Router) {
 
     this.form = new FormGroup({
       title: new FormControl('', [
         Validators.required,
-        Validators.maxLength(35)
+        Validators.maxLength(35),
+        Validators.minLength(3)
       ]),
       category: new FormControl('', [
         Validators.required,
@@ -36,25 +40,30 @@ export class FormularioComponent implements OnInit {
       ]),
       image: new FormControl('', [
         Validators.required,
+        Validators.pattern(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
       ]),
       author: new FormControl('', [
         Validators.required,
-        Validators.maxLength(15)
+        Validators.maxLength(15),
+        Validators.minLength(3)
       ]),
       text: new FormControl('', [
         Validators.required,
+        Validators.minLength(15)
       ])
     });
   }
 
-  ngOnInit() {
-
-  }
-
   onSubmit() {
-    console.log(this.form.value);
     this.newPost = new Post(this.form.value.title, this.form.value.text, this.form.value.author, this.form.value.image, this.form.value.category)
     this.adminService.addPost(this.newPost);
+    //1s Delay at post.
+    setTimeout(async () => {
+      await this.routerActive.navigate(['blog'])
+    }, 1000)
+  }
+
+  ngOnInit() {
   }
 
 }

@@ -18,7 +18,8 @@ import {
   MatCardModule,
   MatSlideToggleModule,
   MatMenuModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule
 } from '@angular/material';
 
 
@@ -44,7 +45,8 @@ import {
     MatCardModule,
     MatSlideToggleModule,
     MatMenuModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

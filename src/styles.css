@@ -1,6 +1,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body { 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

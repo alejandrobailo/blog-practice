@@ -18,8 +18,9 @@
       </button>
     </mat-menu>
     <mat-menu #categories="matMenu">
-      <button mat-menu-item>Food</button>
-      <button mat-menu-item>Travel</button>
+      <button mat-menu-item (click)="handleClick($event)">All</button>
+      <button mat-menu-item (click)="handleClick($event)">Food</button>
+      <button mat-menu-item (click)="handleClick($event)">Travel</button>
     </mat-menu>
   </nav>
 </div>

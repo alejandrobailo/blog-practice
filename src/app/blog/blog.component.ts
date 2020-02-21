@@ -8,22 +8,23 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'ngbd-modal-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">{{post.title}}</h4>
+      <h4 class="modal-title" style="color: tomato">{{post.title}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>Write by {{post.author}}</p>
+      <p style="color: #aaa">Write by {{post.author}} on {{post.date | date: 'dd/MM/yyyy'}}</p>
+      <img style="max-height: 200px; width: 100%; margin-bottom: 1em" [src]="post.image">
       <p>{{post.text}}!</p>
     </div>
     <div class="modal-footer">
-      <p>Category "{{post.category}}"</p>
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+      <p style="color: #aaa">Category {{post.category}}</p>
     </div>
   `
 })
 export class NgbdModalContent {
+  // Get post as input to paint it:
   @Input() post;
 
   constructor(public activeModal: NgbActiveModal) { }
@@ -42,14 +43,20 @@ export class BlogComponent implements OnInit {
   constructor(private adminService: AdminService, private modalService: NgbModal) {
   }
 
+  // Modal window:
   open(i) {
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.post = this.postList[i];
   }
-  ////
+
+  //
+
   ngOnInit() {
     this.postList = this.adminService.getPost();
-    console.log(this.postList);
+    // Subscription changes:
+    this.adminService.postObs().subscribe(() => {
+      this.postList = this.adminService.arrCategory;
+    })
   }
 
   handleInput($event) {
@@ -58,7 +65,6 @@ export class BlogComponent implements OnInit {
 
   handleClick(post) {
     this.adminService.deletePost(post);
-    console.log(post);
     this.postList = this.adminService.getPost();
   }
 

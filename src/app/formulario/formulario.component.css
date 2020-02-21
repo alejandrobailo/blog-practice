@@ -5,3 +5,42 @@
 textarea{
     resize: none;
 }
+
+h2{
+    color: tomato;
+    margin-bottom: 1em;
+}
+
+form{
+    color: #7C8185;
+}
+
+input{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #7C8185;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.error{
+    color: tomato;
+}
+
+/* // */
+.sample-toolbar
+{
+    border:solid 1px #ddd;
+    padding: 5px;
+    border-radius:3px;
+}
+
+.sample-toolbar > span
+{
+    cursor:pointer;
+}
+
+.sample-toolbar > span:hover
+{
+    text-decoration:underline;
+}
