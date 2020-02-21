@@ -6,8 +6,8 @@
                 <input matInput placeholder="Type something" (input)="handleInput($event)">
             </mat-form-field>
         </form>
-        <div class="row">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2" *ngFor="let item of postList; let i = index">
+        <div cdkDropList class="list row" (cdkDropListDropped)="drop($event)">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2 box" *ngFor="let item of postList; let i = index" cdkDrag>
                 <mat-card class="example-card">
                     <img [src]="item.image" mat-card-image>
                     <mat-card-content>

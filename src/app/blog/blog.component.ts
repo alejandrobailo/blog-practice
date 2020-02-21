@@ -3,6 +3,8 @@ import { AdminService } from '../admin.service';
 import { Post } from '../models/post';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -49,7 +51,14 @@ export class BlogComponent implements OnInit {
     modalRef.componentInstance.post = this.postList[i];
   }
 
+  //Drag and drop:
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.postList, event.previousIndex, event.currentIndex);
+  }
+
   //
+
 
   ngOnInit() {
     this.postList = this.adminService.getPost();

@@ -22,6 +22,8 @@ import {
   MatSelectModule
 } from '@angular/material';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import {
     MatSlideToggleModule,
     MatMenuModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

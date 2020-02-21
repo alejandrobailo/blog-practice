@@ -14,12 +14,16 @@ export class AdminService {
   arrCategory: Post[];
 
   constructor() {
+    this.arrPost = [
+      new Post('Read me', 'You can drag the items, please try it and enjoy, thx.', 'Alex', 'https://image.flaticon.com/icons/svg/1196/1196467.svg', 'All'),
+      new Post('Example', 'You can drag me! Move around the screen I am boring', 'Alex', 'https://image.flaticon.com/icons/svg/1196/1196467.svg', 'All')
+    ]
     this.changeSb = new Subject();
   }
 
   // Get all:
   getPost() {
-    return this.arrPost = JSON.parse(localStorage.getItem('posts'));
+    return this.arrPost = this.arrPost.concat(JSON.parse(localStorage.getItem('posts')));
   }
 
   // New post:
@@ -43,7 +47,6 @@ export class AdminService {
     }
     // Alert on changes
     this.changeSb.next(this.arrCategory);
-    console.log(this.arrPost);
   }
 
   // Delete:
