@@ -54,9 +54,9 @@ export class FormularioComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.newPost = new Post(this.form.value.title, this.form.value.text, this.form.value.author, this.form.value.image, this.form.value.category)
-    this.adminService.addPost(this.newPost);
+    await this.adminService.addPost(this.newPost);
     //1s Delay at post.
     setTimeout(async () => {
       await this.routerActive.navigate(['blog'])

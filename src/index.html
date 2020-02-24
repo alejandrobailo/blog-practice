@@ -14,6 +14,25 @@
 
 <body>
   <app-root></app-root>
+  <script src="https://www.gstatic.com/firebasejs/7.9.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDy8QoOYo618InurwTppc_cj8i9o2Gv92o",
+      authDomain: "blog-bootcamp-practice.firebaseapp.com",
+      databaseURL: "https://blog-bootcamp-practice.firebaseio.com",
+      projectId: "blog-bootcamp-practice",
+      storageBucket: "blog-bootcamp-practice.appspot.com",
+      messagingSenderId: "1092231335368",
+      appId: "1:1092231335368:web:60d09e338df92732a4c4fd"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
 
 </html>

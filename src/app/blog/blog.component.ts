@@ -60,8 +60,8 @@ export class BlogComponent implements OnInit {
   //
 
 
-  ngOnInit() {
-    this.postList = this.adminService.getPost();
+  async ngOnInit() {
+    this.postList = await this.adminService.getPost();
     // Subscription changes:
     this.adminService.postObs().subscribe(() => {
       this.postList = this.adminService.arrCategory;
@@ -72,9 +72,9 @@ export class BlogComponent implements OnInit {
     this.postList = this.adminService.getFilterPost($event.target.value);
   }
 
-  handleClick(post) {
+  async handleClick(post) {
     this.adminService.deletePost(post);
-    this.postList = this.adminService.getPost();
+    this.postList = await this.adminService.getPost();
   }
 
 }

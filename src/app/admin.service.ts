@@ -16,25 +16,41 @@ export class AdminService {
   constructor() {
     this.arrPost = [
       new Post('Read me', 'You can drag the items, please try it and enjoy, thx.', 'Alex', 'https://image.flaticon.com/icons/svg/1196/1196467.svg', 'All'),
-      new Post('Example', 'You can drag me! Move around the screen I am boring', 'Alex', 'https://image.flaticon.com/icons/svg/1196/1196467.svg', 'All')
+      new Post('Example', 'You can drag me! Move me around the screen, I am boring.', 'Alex', 'https://image.flaticon.com/icons/svg/1196/1196467.svg', 'All')
     ]
     this.changeSb = new Subject();
   }
 
   // Get all:
-  getPost() {
-    return this.arrPost = this.arrPost.concat(JSON.parse(localStorage.getItem('posts')));
+  getPost(): Promise<Post[]> {
+    return new Promise<Post[]>((resolve, reject) => {
+      // If there is anything in local storage do it
+      if (JSON.parse(localStorage.getItem('posts')) != null) {
+        for (const post of JSON.parse(localStorage.getItem('posts'))) {
+          // If the post does not repeat get it
+          if (this.arrPost.some(item => item.title == post.title)) {
+            this.arrPost;
+          } else {
+            this.arrPost = this.arrPost.concat(post)
+          }
+        }
+        resolve(this.arrPost);
+      } else resolve(this.arrPost);
+    })
   }
 
   // New post:
-  addPost(pPost: Post) {
-    this.arrPost.unshift(pPost);
-    localStorage.setItem('posts', JSON.stringify(this.arrPost))
+  addPost(pPost: Post): Promise<Post[]> {
+    return new Promise<Post[]>((resolve, reject) => {
+      this.arrPost.unshift(pPost);
+      localStorage.setItem('posts', JSON.stringify(this.arrPost))
+      resolve(this.arrPost);
+    })
   }
 
   // Filters:
   getFilterPost(event) {
-    return this.arrPost.filter(item => item.title.includes(event));
+    return this.arrPost.filter(item => item.title.toLowerCase().includes(event));
   }
 
   getFilterCategory(event) {
